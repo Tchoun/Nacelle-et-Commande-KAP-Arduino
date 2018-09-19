@@ -2,9 +2,29 @@ En l'air :
 - une arduino (micro ou nano)
 - emeteur/recepteur radio + antenne (https://www.adafruit.com/product/3070)
 - un capteur de pression pour faire altimètre (https://www.adafruit.com/product/1893)
+if you're using an Arduino,
+simply connect the VDD pin to the 5V voltage pin, 
+GND to ground, 
+SCL to I2C Clock (Analog 5 on an UNO) 
+and SDA to I2C Data (Analog 4 on an UNO)
+
 - deux servomoteurs continus avec feedback pour le tilt et le pan (https://www.adafruit.com/product/1404)
 - un micro servo pour la prise de vue (ou une impulsion si on a un canon bidouillé...)
 - une carte de séparation de l'alimentation des servos et connexion en I2C (https://www.adafruit.com/product/815)
+"Classic" Arduino wiring:
+    +5v -> VCC (this is power for the BREAKOUT only, NOT the servo power!)
+    GND -> GND
+    Analog 4 -> SDA
+    Analog 5 -> SCL
+
+R3 and later Arduino wiring (Uno, Mega & Leonardo):
+(These boards have dedicated SDA & SCL pins on the header nearest the USB connector)
+
+    +5v -> VCC (this is power for the BREAKOUT only, NOT the servo power!)
+    GND -> GND
+    SDA -> SDA
+    SCL -> SCL
+
 - batterie d'alimentation du circuit de commande
 - batterie d'alimentation du circuit de puissance
 
