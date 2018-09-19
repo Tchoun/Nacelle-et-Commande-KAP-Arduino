@@ -1,0 +1,20 @@
+Début du programme :
+- initialiser la position X du joystick
+- initialiser la position X du joystick
+- initialiser la position des servo
+- initialiser l'altitude à 0
+
+Si Joystick vers la gauche :
+    entre 0 et milieu course gauche  -> servo Pan decalle de 5° vers la gauche 
+    entre milieu et fin de course gauche  -> servo Pan decalle de 10° vers la gauche 
+Si Joystick vers la droite :
+    entre 0 et milieu course droite  -> servo Pan decalle de 5° vers la droite 
+    entre milieu et fin de course droite  -> servo Pan decalle de 10° vers la droite 
+Si Joystick vers la haut :
+  Si le servo n'est pas en position maxi haute
+    entre 0 et milieu course haut  -> servo Pan decalle de 5° vers le haut 
+    entre milieu et fin de course haut  -> servo Pan decalle de 10° vers le haut 
+Si Joystick vers la gauche :
+  Si le servo n'est pas en position maxi basse
+    entre 0 et milieu course bas  -> servo Pan decalle de 5° vers le bas 
+    entre milieu et fin de course bas  -> servo Pan decalle de 10° vers le bas 
