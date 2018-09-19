@@ -1,0 +1,28 @@
+Voici une liste des bibliothèques Adafruit et liens utiles pour la programmation du projet :
+
+En l'air :
+- une arduino (micro ou nano)
+- emeteur/recepteur radio + antenne (https://www.adafruit.com/product/3070)
+
+- un capteur de pression pour faire altimètre (https://www.adafruit.com/product/1893)
+https://github.com/adafruit/Adafruit_MPL3115A2_Library
+
+- deux servomoteurs continus avec feedback pour le tilt et le pan (https://www.adafruit.com/product/1404)
+https://learn.adafruit.com/analog-feedback-servos/using-feedback
+
+- un micro servo pour la prise de vue (ou une impulsion si on a un canon bidouillé...)
+- une carte de séparation de l'alimentation des servos et connexion en I2C (https://www.adafruit.com/product/815)
+
+
+- batterie d'alimentation du circuit de commande
+- batterie d'alimentation du circuit de puissance
+
+Au sol :
+- une arduino Uno
+- émetteur/récepteur radio + antenne (https://www.adafruit.com/product/3070)
+- un joystick 2 axes + clic pour la commande manuelle pan/tilt et le déclenchement (https://www.adafruit.com/product/245)
+- un afficheur 7 segments pour les affichages (angles / altitude) (https://www.adafruit.com/product/879)
+https://github.com/adafruit/Adafruit_LED_Backpack
+
+- batterie d'alimentation du circuit de commande
+- éventuellement, des petits switchs pour déclencher séquences de programme d'autokap
