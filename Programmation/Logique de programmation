@@ -18,3 +18,17 @@ Si Joystick vers la gauche :
   Si le servo n'est pas en position maxi basse
     entre 0 et milieu course bas  -> servo Pan decalle de 5° vers le bas 
     entre milieu et fin de course bas  -> servo Pan decalle de 10° vers le bas 
+Si le joystick et cliqué :
+    declencher photo
+
+Si bouton 1 =high (unipolaire bistable) :
+- carte 1 envoi "fin demande altitude" à carte 2
+- carte 2 reveiller carte altimetre
+- carte 2 envoye mesure d'altitude toutes les 10 secondes
+- carte 1 affiche altitude sur ecran
+
+Si bouton 1 =low (unipolaire bistable) :
+- carte 1 envoi "demande altitude" à carte 2
+- carte 2 reveiller carte altimetre
+- carte 2 envoye mesure d'altitude toutes les 10 secondes
+- carte 1 affiche altitude sur ecran
