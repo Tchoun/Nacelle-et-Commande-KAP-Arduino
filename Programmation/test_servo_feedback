@@ -1,0 +1,39 @@
+//Test lecture position servo a retour de position
+
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include "Adafruit_LEDBackpack.h"
+#include <Servo.h>
+
+
+Servo ServoPan;  // Creation d'un objet Servo pour le controle du mouvement panoramique
+uint8_t AnglePan = 100; // Création d'une variable pour l'increment de l'angle du servoPanormamique
+uint8_t RetourAnglePan; // Creation d'une variable pour le retour de l'angle du servo panoramique connecté en A0
+byte PanFeedback_PWM_PIN = 3;
+
+Adafruit_7segment matrix = Adafruit_7segment();
+
+void setup() {
+#ifndef __AVR_ATtiny85__
+  Serial.begin(9600);
+  Serial.println("7 Segment Backpack Test");
+#endif
+  pinMode(PanFeedback_PWM_PIN, INPUT);
+  matrix.begin(0x70);
+  ServoPan.attach(9);  // déclaration du servo sur la sortie 9
+}
+
+void loop() {
+
+  RetourAnglePan = pulseIn(PanFeedback_PWM_PIN, HIGH);
+  Serial.println(RetourAnglePan);
+  matrix.println(RetourAnglePan);
+  matrix.writeDisplay();
+
+    ServoPan.write(AnglePan);  
+    delay(1000);
+    ServoPan.write(90);  //Servo à l'arret
+    delay(1000);
+ // }
+
+}
