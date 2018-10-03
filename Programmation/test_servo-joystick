@@ -1,0 +1,85 @@
+//Test direction servo a retour de positio avec joystick
+//Attention : cablage pour Arduino Micro (les positionnements des ports PWM ne sont pas les memes que sur une UNO ou Nano)
+
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_PWMServoDriver.h>
+#include <Servo.h>
+
+Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();//Appel de la carte multiservo adafruit sur l'adresse par defaut 0x40
+Servo ServoPan;  // Creation d'un objet Servo pour le controle du mouvement panoramique
+Servo ServoTilt;  // Creation d'un objet Servo pour le controle du mouvement vertical
+Servo ServoClic;  // Creation d'un objet Servo pour le controle du declenchement photo
+uint8_t AngleCommandePan = 90; // Création d'une variable pour l'increment de l'angle du servo à rotation continue Panormamique (90=arret)
+uint8_t AngleCommandeTilt = 90; // Création d'une variable pour l'increment de l'angle du servo  à rotation continue Vertical
+uint8_t AngleCommandeClic = 100; // Création d'une variable pour l'angle du servo 180° declencheur
+uint8_t RetourAnglePan; // Creation d'une variable pour le retour de l'angle du servo panoramique
+uint8_t RetourAngleTilt; // Creation d'une variable pour le retour de l'angle du servo panoramique
+byte PanFeedback_PWM_PIN = 4; // connecter le retour angle du servo ServoPan sur 4 (PWM sur Arduino Micro)
+byte TiltFeedback_PWM_PIN = 5; // connecter le retour angle du servo ServoTilt sur 5 (PWM sur arduino Micro)
+const int Joystick_Clic_pin = 2; // digital pin connected to switch output
+const int Joystick_X_pin = 0; // analog pin connected to X output
+const int Joystick_Y_pin = 1; // analog pin connected to Y output
+int Joystick_Clic = 0;
+int Joystick_X = 0;
+int Joystick_Y = 0;
+int Calibration_Joystick_X = 0;
+int Calibration_Joystick_Y = 0;
+
+
+
+
+void setup() {
+  
+  int Calibration_Joystick_X = analogRead(Joystick_X_pin);
+  int Calibration_Joystick_Y = analogRead(Joystick_Y_pin);
+  pinMode(PanFeedback_PWM_PIN, INPUT);
+  pinMode(Joystick_Clic_pin, INPUT);
+  digitalWrite(Joystick_Clic_pin, HIGH);
+  pwm.begin();
+  pwm.setPWMFreq(60);  // Analog servos run at ~60 Hz updates
+  delay(10);
+  ServoPan.attach();  // déclaration du servo sur la sortie ??? je ne sais pas trop comment on fait avec la carte multi servo
+  ServoTilt.attach();  //???
+  ServoClic.attach(); //???
+}
+
+void loop() {
+
+int Joystick_Clic = digitalRead(Joystick_Clic_pin);
+int Joystick_X = analogRead(Joystick_X_pin);
+int Joystick_Y = analogRead(Joystick_Y_pin);
+
+  RetourAnglePan = pulseIn(PanFeedback_PWM_PIN, HIGH);
+  Serial.println(RetourAnglePan);
+  matrix.println(RetourAnglePan);
+  matrix.writeDisplay();
+
+    
+
+}
+
+//Declaration des fonctions :
+//(laissons tomber les vitesses pour l'instant...)
+
+void PanPlus(){
+  
+}
+
+void PanMoins(){
+  
+}
+
+void TiltPlus(){
+  
+}
+
+void TiltMoins(){
+  
+}
+
+void ClicPhoto(){
+  
+}
+
+}
