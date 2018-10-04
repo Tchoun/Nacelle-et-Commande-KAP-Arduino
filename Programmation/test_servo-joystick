@@ -1,5 +1,6 @@
 //Test direction servo a retour de positio avec joystick
 //Attention : cablage pour Arduino Micro (les positionnements des ports PWM ne sont pas les memes que sur une UNO ou Nano)
+//Sur carte 16 servo adafruit : prise 0 : ServoPan / Prise 1 : ServoTilt / Prise 2 : servoClic
 
 #include <Wire.h>
 #include <Adafruit_GFX.h>
@@ -7,9 +8,9 @@
 #include <Servo.h>
 
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();//Appel de la carte multiservo adafruit sur l'adresse par defaut 0x40
-Servo ServoPan;  // Creation d'un objet Servo pour le controle du mouvement panoramique
-Servo ServoTilt;  // Creation d'un objet Servo pour le controle du mouvement vertical
-Servo ServoClic;  // Creation d'un objet Servo pour le controle du declenchement photo
+Servo ServoPan;  // Creation d'un objet Servo pour le controle du mouvement panoramique, connecté sur la prise 0 de la carte Adafruit 16 servos
+Servo ServoTilt;  // Creation d'un objet Servo pour le controle du mouvement vertical, connecté sur la prise 1 de la carte Adafruit 16 servos
+Servo ServoClic;  // Creation d'un objet Servo pour le controle du declenchement photo, connecté sur la prise 2 de la carte Adafruit 16 servos
 uint8_t AngleCommandePan = 90; // Création d'une variable pour l'increment de l'angle du servo à rotation continue Panormamique (90=arret)
 uint8_t AngleCommandeTilt = 90; // Création d'une variable pour l'increment de l'angle du servo  à rotation continue Vertical
 uint8_t AngleCommandeClic = 100; // Création d'une variable pour l'angle du servo 180° declencheur
@@ -52,8 +53,6 @@ int Joystick_Y = analogRead(Joystick_Y_pin);
 
   RetourAnglePan = pulseIn(PanFeedback_PWM_PIN, HIGH);
   Serial.println(RetourAnglePan);
-  matrix.println(RetourAnglePan);
-  matrix.writeDisplay();
 
     
 
@@ -79,7 +78,9 @@ void TiltMoins(){
 }
 
 void ClicPhoto(){
-  
+  pwm.setPWM(2, 4096, 0); // turns pin fully on
+  delay(100);
+  pwm.setPWM(2, 0, 4096); // turns pin fully on
 }
 
 }
